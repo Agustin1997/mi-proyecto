@@ -180,10 +180,10 @@ def busqueda_codigo():
                 archivo.truncate()
         except FileNotFoundError:
             return 'No se encuentra el archivo csv utilizado para las busquedas'
-        form_telefono = Consulta_Codigo()
+        form_codigo = Consulta_Codigo()
         df = pandas.read_csv('ventas')
-        if form_telefono.validate_on_submit():
-            df2 = df[(df['CODIGO']==int(form_telefono.criterio.data))]
+        if form_codigo.validate_on_submit():
+            df2 = df[(df['CODIGO'].str.contains(form_codigo.criterio.data))]
             df2.to_csv('busqueda', index=None)
             if df2.empty is True:
                 flash('No se encontraron resultados')
@@ -192,8 +192,8 @@ def busqueda_codigo():
                 with open('busqueda') as archivo:
                     lista_resultado = csv.reader(archivo)
                     cabeza = next(lista_resultado)
-                    return render_template('resultado.html', form=form_telefono, cabeza=cabeza, cuerpo=lista_resultado, username=session.get('username'))
-        return render_template('busqueda_codigo.html', form=form_telefono, df=df, username=session.get('username'))
+                    return render_template('resultado.html', form=form_codigo, cabeza=cabeza, cuerpo=lista_resultado, username=session.get('username'))
+        return render_template('busqueda_codigo.html', form=form_codigo, df=df, username=session.get('username'))
     return redirect('/login')
 
 @app.route('/busqueda/cantidad', methods=['GET', 'POST'])
