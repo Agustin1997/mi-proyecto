@@ -1,6 +1,6 @@
 # IFTS-Estructura-Paradigmas
 
-Esta es una aplicación Web para consultar la base de datos en donde están almacenadas las Ventas del local "Farmacia".
+Esta es una aplicación Web para consultar la base de datos en donde están almacenadas las Ventas del local "Muebles".
 
 A grandes rasgos, ¿cómo será el flujo del programa?
 
